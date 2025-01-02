@@ -22,7 +22,6 @@ import lombok.Data;
 
 /**
  * 短链接分页请求参数
-
  */
 @Data
 public class ShortLinkPageReqDTO extends Page {

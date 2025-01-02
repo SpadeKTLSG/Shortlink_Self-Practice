@@ -40,7 +40,6 @@ import java.util.Optional;
 
 /**
  * 全局异常处理器
- 
  */
 @Component("globalExceptionHandlerByAdmin")
 @Slf4j

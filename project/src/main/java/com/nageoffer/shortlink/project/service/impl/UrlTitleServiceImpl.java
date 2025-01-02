@@ -28,7 +28,6 @@ import java.net.URL;
 
 /**
  * URL 标题接口实现层
- 
  */
 @Service
 public class UrlTitleServiceImpl implements UrlTitleService {

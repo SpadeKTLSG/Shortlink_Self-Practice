@@ -26,7 +26,6 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 短链接持久层
- 
  */
 public interface ShortLinkMapper extends BaseMapper<ShortLinkDO> {
 

@@ -30,7 +30,6 @@ import java.util.List;
 
 /**
  * 浏览器统计访问持久层
- 
  */
 public interface LinkBrowserStatsMapper extends BaseMapper<LinkBrowserStatsDO> {
 

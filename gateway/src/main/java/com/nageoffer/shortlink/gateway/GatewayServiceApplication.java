@@ -22,7 +22,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 网关服务应用启动器
-
  */
 @SpringBootApplication
 public class GatewayServiceApplication {

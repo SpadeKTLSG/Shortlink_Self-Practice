@@ -21,7 +21,6 @@ import java.security.SecureRandom;
 
 /**
  * 分组ID随机生成器
-
  */
 public final class RandomGenerator {
 

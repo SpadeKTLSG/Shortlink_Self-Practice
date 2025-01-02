@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 用户信息实体
-
  */
 @Data
 @NoArgsConstructor

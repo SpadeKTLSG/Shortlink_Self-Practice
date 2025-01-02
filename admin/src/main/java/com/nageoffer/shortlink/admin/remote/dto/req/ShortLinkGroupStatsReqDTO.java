@@ -21,7 +21,6 @@ import lombok.Data;
 
 /**
  * 分组短链接监控请求参数
-
  */
 @Data
 public class ShortLinkGroupStatsReqDTO {

@@ -19,7 +19,6 @@ package com.nageoffer.shortlink.project.common.convention.errorcode;
 
 /**
  * 平台错误码
-
  */
 public interface IErrorCode {
 

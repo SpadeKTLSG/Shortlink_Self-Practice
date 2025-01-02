@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 短链接浏览器监控响应参数
- 
  */
 @Data
 @Builder

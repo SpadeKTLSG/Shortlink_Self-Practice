@@ -27,49 +27,22 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nageoffer.shortlink.project.common.biz.user.UserContext;
 import com.nageoffer.shortlink.project.common.convention.exception.ServiceException;
-import com.nageoffer.shortlink.project.dao.entity.GroupDO;
-import com.nageoffer.shortlink.project.dao.entity.LinkAccessLogsDO;
-import com.nageoffer.shortlink.project.dao.entity.LinkAccessStatsDO;
-import com.nageoffer.shortlink.project.dao.entity.LinkDeviceStatsDO;
-import com.nageoffer.shortlink.project.dao.entity.LinkLocaleStatsDO;
-import com.nageoffer.shortlink.project.dao.entity.LinkNetworkStatsDO;
-import com.nageoffer.shortlink.project.dao.mapper.LinkGroupMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkAccessLogsMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkAccessStatsMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkBrowserStatsMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkDeviceStatsMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkLocaleStatsMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkNetworkStatsMapper;
-import com.nageoffer.shortlink.project.dao.mapper.LinkOsStatsMapper;
+import com.nageoffer.shortlink.project.dao.entity.*;
+import com.nageoffer.shortlink.project.dao.mapper.*;
 import com.nageoffer.shortlink.project.dto.req.ShortLinkGroupStatsAccessRecordReqDTO;
 import com.nageoffer.shortlink.project.dto.req.ShortLinkGroupStatsReqDTO;
 import com.nageoffer.shortlink.project.dto.req.ShortLinkStatsAccessRecordReqDTO;
 import com.nageoffer.shortlink.project.dto.req.ShortLinkStatsReqDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsAccessDailyRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsAccessRecordRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsBrowserRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsDeviceRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsLocaleCNRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsNetworkRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsOsRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsTopIpRespDTO;
-import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsUvRespDTO;
+import com.nageoffer.shortlink.project.dto.resp.*;
 import com.nageoffer.shortlink.project.service.ShortLinkStatsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 短链接监控接口实现层
- 
  */
 @Service
 @RequiredArgsConstructor

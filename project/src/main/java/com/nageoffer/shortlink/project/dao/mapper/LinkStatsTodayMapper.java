@@ -24,7 +24,6 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 短链接今日统计持久层
-
  */
 public interface LinkStatsTodayMapper extends BaseMapper<LinkStatsTodayDO> {
 

@@ -24,7 +24,6 @@ import java.util.Date;
 
 /**
  * 短链接基础访问监控响应参数
-
  */
 @Data
 public class ShortLinkStatsAccessDailyRespDTO {

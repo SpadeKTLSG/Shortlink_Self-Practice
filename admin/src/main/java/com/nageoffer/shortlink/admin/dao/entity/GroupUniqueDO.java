@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 短链接分组唯一路由实体
- 
  */
 @Data
 @TableName("t_group_unique")

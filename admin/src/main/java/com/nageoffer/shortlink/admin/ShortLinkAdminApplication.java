@@ -25,7 +25,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 短链接后管应用
- 
  */
 @SpringBootApplication
 @EnableDiscoveryClient

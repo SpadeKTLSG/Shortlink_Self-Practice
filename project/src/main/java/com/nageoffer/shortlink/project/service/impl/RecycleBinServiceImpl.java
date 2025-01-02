@@ -18,7 +18,6 @@
 package com.nageoffer.shortlink.project.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -40,7 +39,6 @@ import static com.nageoffer.shortlink.project.common.constant.RedisKeyConstant.G
 
 /**
  * 回收站管理接口实现层
-
  */
 @Service
 @RequiredArgsConstructor

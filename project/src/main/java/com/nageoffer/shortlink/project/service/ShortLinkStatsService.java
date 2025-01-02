@@ -27,7 +27,6 @@ import com.nageoffer.shortlink.project.dto.resp.ShortLinkStatsRespDTO;
 
 /**
  * 短链接监控接口层
-
  */
 public interface ShortLinkStatsService {
 

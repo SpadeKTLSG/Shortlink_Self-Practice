@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * 短链接基础访问监控持久层
- 
  */
 public interface LinkAccessStatsMapper extends BaseMapper<LinkAccessStatsDO> {
 

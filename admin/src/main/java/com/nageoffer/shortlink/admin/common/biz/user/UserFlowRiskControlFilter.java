@@ -22,11 +22,7 @@ import com.google.common.collect.Lists;
 import com.nageoffer.shortlink.admin.common.convention.exception.ClientException;
 import com.nageoffer.shortlink.admin.common.convention.result.Results;
 import com.nageoffer.shortlink.admin.config.UserFlowRiskControlConfiguration;
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
+import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -44,16 +40,14 @@ import static com.nageoffer.shortlink.admin.common.convention.errorcode.BaseErro
 
 /**
  * 用户操作流量风控过滤器
-
  */
 @Slf4j
 @RequiredArgsConstructor
 public class UserFlowRiskControlFilter implements Filter {
 
+    private static final String USER_FLOW_RISK_CONTROL_LUA_SCRIPT_PATH = "lua/user_flow_risk_control.lua";
     private final StringRedisTemplate stringRedisTemplate;
     private final UserFlowRiskControlConfiguration userFlowRiskControlConfiguration;
-
-    private static final String USER_FLOW_RISK_CONTROL_LUA_SCRIPT_PATH = "lua/user_flow_risk_control.lua";
 
     @SneakyThrows
     @Override

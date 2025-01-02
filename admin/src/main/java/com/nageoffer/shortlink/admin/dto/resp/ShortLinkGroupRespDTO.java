@@ -21,7 +21,6 @@ import lombok.Data;
 
 /**
  * 短链接分组返回实体对象
-
  */
 @Data
 public class ShortLinkGroupRespDTO {

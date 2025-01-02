@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * 访问网络监控持久层
-
  */
 public interface LinkNetworkStatsMapper extends BaseMapper<LinkNetworkStatsDO> {
 

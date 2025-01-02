@@ -6,7 +6,8 @@
 
 <script setup>
 import * as echarts from 'echarts'
-import { onMounted, nextTick, ref, watch } from 'vue'
+import {nextTick, onMounted, ref, watch} from 'vue'
+
 const props = defineProps({
   chartData: {
     type: Object,
@@ -18,10 +19,10 @@ const props = defineProps({
   }
 })
 watch(
-  () => props.chartData,
-  () => {
-    initChart()
-  }
+    () => props.chartData,
+    () => {
+      initChart()
+    }
 )
 const barChartRef = ref()
 const initChart = () => {
@@ -73,9 +74,9 @@ const initChart = () => {
         barWidth: '10px',
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#83bff6' },
-            { offset: 0.5, color: '#188df0' },
-            { offset: 1, color: '#188df0' }
+            {offset: 0, color: '#83bff6'},
+            {offset: 0.5, color: '#188df0'},
+            {offset: 1, color: '#188df0'}
           ])
         },
         showBackground: true,

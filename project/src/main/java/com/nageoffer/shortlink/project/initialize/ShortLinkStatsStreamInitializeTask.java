@@ -27,7 +27,6 @@ import static com.nageoffer.shortlink.project.common.constant.RedisKeyConstant.S
 
 /**
  * 初始化短链接监控消息队列消费者组
- 
  */
 @Component
 @RequiredArgsConstructor

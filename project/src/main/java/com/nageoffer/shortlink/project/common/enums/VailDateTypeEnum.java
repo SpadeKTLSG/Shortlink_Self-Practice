@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * 有效期类型
- 
  */
 @RequiredArgsConstructor
 public enum VailDateTypeEnum {

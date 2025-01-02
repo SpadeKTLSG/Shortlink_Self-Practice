@@ -28,7 +28,6 @@ import java.util.Date;
 
 /**
  * 地区统计访问实体
- 
  */
 @Data
 @TableName("t_link_locale_stats")

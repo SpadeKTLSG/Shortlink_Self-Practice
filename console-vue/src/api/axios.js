@@ -2,7 +2,6 @@ import axios from 'axios'
 import {getToken, getUsername} from '@/core/auth.js'
 import {isNotEmpty} from '@/utils/plugins.js'
 import router from "@/router";
-import { ElMessage } from 'element-plus'
 
 // const router = useRouter()
 const baseURL = '/api/short-link/admin/v1'

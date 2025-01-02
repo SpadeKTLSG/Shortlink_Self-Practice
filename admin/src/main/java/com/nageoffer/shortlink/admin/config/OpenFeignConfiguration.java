@@ -24,7 +24,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * openFeign 微服务调用传递用户信息配置
- 
  */
 @Configuration
 public class OpenFeignConfiguration {

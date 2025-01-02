@@ -27,7 +27,6 @@ import java.util.Date;
 
 /**
  * 短链接监控访问记录响应参数
- 
  */
 @Data
 @Builder

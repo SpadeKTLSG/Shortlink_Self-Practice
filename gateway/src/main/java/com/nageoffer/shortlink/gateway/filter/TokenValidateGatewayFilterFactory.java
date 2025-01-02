@@ -40,7 +40,6 @@ import java.util.Objects;
 
 /**
  * SpringCloud Gateway Token 拦截器
- 
  */
 @Component
 public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFactory<Config> {

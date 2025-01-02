@@ -36,7 +36,6 @@ import java.util.List;
 
 /**
  * 短链接接口层
-
  */
 public interface ShortLinkService extends IService<ShortLinkDO> {
 

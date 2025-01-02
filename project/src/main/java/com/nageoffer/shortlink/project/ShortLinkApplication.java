@@ -24,7 +24,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 短链接应用
- 
  */
 @SpringBootApplication
 @EnableDiscoveryClient

@@ -4,7 +4,7 @@
       所选日期内没有访问数据
     </span>
     <div class="flex-box">
-      <div class="flex-item" v-for="(item, index) in dataLists" :key="index">
+      <div v-for="(item, index) in dataLists" :key="index" class="flex-item">
         <span class="key-text">{{ item.ip }}</span>
         <span>{{ item.cnt }} 次</span>
       </div>
@@ -26,13 +26,16 @@ defineProps({
 <style lang="scss" scoped>
 .main {
   padding: 20px;
+
   .flex-box {
     display: flex;
     flex-direction: column;
+
     .flex-item {
       display: flex;
       margin-bottom: 5px;
       justify-content: space-between;
+
       .key-text {
         color: #3464e0;
       }

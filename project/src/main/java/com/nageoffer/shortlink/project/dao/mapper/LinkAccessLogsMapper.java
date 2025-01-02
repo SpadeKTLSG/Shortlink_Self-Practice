@@ -33,7 +33,6 @@ import java.util.Map;
 
 /**
  * 访问日志监控持久层
- 
  */
 public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {
 

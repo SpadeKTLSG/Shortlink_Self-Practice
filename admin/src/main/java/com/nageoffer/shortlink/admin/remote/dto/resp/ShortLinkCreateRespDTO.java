@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 短链接创建响应对象
-
  */
 @Data
 @Builder

@@ -27,7 +27,6 @@ import java.util.List;
 
 /**
  * 短链接分组接口层
- 
  */
 public interface GroupService extends IService<GroupDO> {
 

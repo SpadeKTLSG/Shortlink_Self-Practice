@@ -28,7 +28,6 @@ import java.util.Date;
 
 /**
  * 操作系统统计访问实体
- 
  */
 @Data
 @TableName("t_link_os_stats")

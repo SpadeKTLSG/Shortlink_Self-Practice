@@ -30,7 +30,6 @@ import static com.nageoffer.shortlink.project.common.constant.ShortLinkConstant.
 
 /**
  * 短链接工具类
- 
  */
 public class LinkUtil {
 

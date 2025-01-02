@@ -28,7 +28,6 @@ import java.util.List;
 
 /**
  * 初始化限流配置
-
  */
 @Component
 public class SentinelRuleConfig implements InitializingBean {

@@ -24,7 +24,6 @@ import java.util.Optional;
 
 /**
  * 服务端异常
-
  */
 public class ServiceException extends AbstractException {
 

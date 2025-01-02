@@ -28,7 +28,6 @@ import java.util.Date;
 
 /**
  * 短链接基础访问监控实体
- 
  */
 @Data
 @Builder

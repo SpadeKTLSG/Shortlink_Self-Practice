@@ -12,7 +12,8 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import {onMounted} from 'vue'
+
 defineProps({
   title: {
     type: String,
@@ -37,6 +38,7 @@ onMounted(() => {
   color: #3464e0;
   font-size: 18px;
 }
+
 .title-box::before {
   content: '';
   position: absolute;
@@ -47,6 +49,7 @@ onMounted(() => {
   z-index: 99;
   bottom: -1px;
 }
+
 .content-box {
   flex: 1;
 }

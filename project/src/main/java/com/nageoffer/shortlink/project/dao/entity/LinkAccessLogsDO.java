@@ -26,7 +26,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 访问日志监控实体
- 
  */
 @Data
 @TableName("t_link_access_logs")

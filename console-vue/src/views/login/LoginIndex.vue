@@ -3,64 +3,66 @@
     <h1 class="title">SaaS 短 链 接 平 台(马丁)</h1>
     <div class="login-box">
       <!-- 登录 -->
-      <div class="logon" :class="{ hidden: !isLogin }">
+      <div :class="{ hidden: !isLogin }" class="logon">
         <h2>用户登录</h2>
-        <el-form ref="loginFormRef1" :model="loginForm" label-width="50px" :rules="loginFormRule">
+        <el-form ref="loginFormRef1" :model="loginForm" :rules="loginFormRule" label-width="50px">
           <div class="form-container1">
             <el-form-item prop="phone">
-              <el-input v-model="loginForm.username" placeholder="请输入用户名" maxlength="11" show-word-limit clearable>
-                <template v-slot:prepend> 用户名 </template>
+              <el-input v-model="loginForm.username" clearable maxlength="11" placeholder="请输入用户名" show-word-limit>
+                <template v-slot:prepend> 用户名</template>
               </el-input>
             </el-form-item>
 
             <el-form-item prop="password">
-              <el-input v-model="loginForm.password" type="password" clearable placeholder="请输入密码" show-password
-                style="margin-top: 20px">
-                <template v-slot:prepend> 密<span class="second-font">码</span> </template>
+              <el-input v-model="loginForm.password" clearable placeholder="请输入密码" show-password style="margin-top: 20px"
+                        type="password">
+                <template v-slot:prepend> 密<span class="second-font">码</span></template>
               </el-input>
             </el-form-item>
           </div>
           <div class="btn-gourp">
             <div>
-              <el-checkbox class="remeber-password" v-model="checked"
-                style="color: #a0a0a0; margin: 0 0 0px 0">记住密码</el-checkbox>
+              <el-checkbox v-model="checked" class="remeber-password"
+                           style="color: #a0a0a0; margin: 0 0 0px 0">记住密码
+              </el-checkbox>
             </div>
             <div>
-              <el-button :loading="loading" @keyup.enter="login" type="primary" plain
-                @click="login(loginFormRef1)">登录</el-button>
+              <el-button :loading="loading" plain type="primary" @click="login(loginFormRef1)"
+                         @keyup.enter="login">登录
+              </el-button>
             </div>
           </div>
         </el-form>
       </div>
       <!-- 注册 -->
-      <div class="register" :class="{ hidden: isLogin }">
+      <div :class="{ hidden: isLogin }" class="register">
         <h2>用户注册</h2>
-        <el-form ref="loginFormRef2" :model="addForm" label-width="50px" class="form-container" width="width"
-          :rules="addFormRule">
+        <el-form ref="loginFormRef2" :model="addForm" :rules="addFormRule" class="form-container" label-width="50px"
+                 width="width">
           <el-form-item prop="username">
-            <el-input v-model="addForm.username" placeholder="请输入用户名" maxlength="11" show-word-limit clearable>
-              <template v-slot:prepend> 用户名 </template>
+            <el-input v-model="addForm.username" clearable maxlength="11" placeholder="请输入用户名" show-word-limit>
+              <template v-slot:prepend> 用户名</template>
             </el-input>
           </el-form-item>
           <el-form-item prop="mail">
-            <el-input v-model="addForm.mail" placeholder="请输入邮箱" show-word-limit clearable>
-              <template v-slot:prepend> 邮<span class="second-font">箱</span> </template>
+            <el-input v-model="addForm.mail" clearable placeholder="请输入邮箱" show-word-limit>
+              <template v-slot:prepend> 邮<span class="second-font">箱</span></template>
             </el-input>
           </el-form-item>
           <el-form-item prop="phone">
-            <el-input v-model="addForm.phone" placeholder="请输入手机号" show-word-limit clearable>
-              <template v-slot:prepend> 手机号 </template>
+            <el-input v-model="addForm.phone" clearable placeholder="请输入手机号" show-word-limit>
+              <template v-slot:prepend> 手机号</template>
             </el-input>
           </el-form-item>
           <el-form-item prop="realName">
-            <el-input v-model="addForm.realName" placeholder="请输入姓名" show-word-limit clearable>
-              <template v-slot:prepend> 姓<span class="second-font">名</span> </template>
+            <el-input v-model="addForm.realName" clearable placeholder="请输入姓名" show-word-limit>
+              <template v-slot:prepend> 姓<span class="second-font">名</span></template>
             </el-input>
           </el-form-item>
 
           <el-form-item prop="password">
-            <el-input v-model="addForm.password" type="password" clearable placeholder="请输入密码" show-password>
-              <template v-slot:prepend> 密<span class="second-font">码</span> </template>
+            <el-input v-model="addForm.password" clearable placeholder="请输入密码" show-password type="password">
+              <template v-slot:prepend> 密<span class="second-font">码</span></template>
             </el-input>
           </el-form-item>
           <!-- 验证码 -->
@@ -81,34 +83,36 @@
           <div class="btn-gourp">
             <div></div>
             <div>
-              <el-button :loading="loading" @keyup.enter="login" type="primary" plain
-                @click="addUser(loginFormRef2)">注册</el-button>
+              <el-button :loading="loading" plain type="primary" @click="addUser(loginFormRef2)"
+                         @keyup.enter="login">注册
+              </el-button>
             </div>
           </div>
         </el-form>
       </div>
       <!-- 左右移动的切换按钮 -->
-      <div class="move" ref="moveRef">
+      <div ref="moveRef" class="move">
         <span style="font-size: 18px; margin-bottom: 25px; color: rgb(225, 238, 250)">{{
-          !isLogin ? '已有账号？' : '还没有账号？'
-        }}</span>
+            !isLogin ? '已有账号？' : '还没有账号？'
+          }}</span>
         <span style="font-size: 16px; color: rgb(225, 238, 250)">{{
-          !isLogin ? '欢迎登录账号！' : '欢迎注册账号！'
-        }}</span>
+            !isLogin ? '欢迎登录账号！' : '欢迎注册账号！'
+          }}</span>
         <el-button style="width: 100px; margin-top: 30px" @click="changeLogin">{{
-          !isLogin ? '去登录' : '去注册'
-        }}</el-button>
+            !isLogin ? '去登录' : '去注册'
+          }}
+        </el-button>
       </div>
     </div>
     <div ref="vantaRef" class="vanta"></div>
   </div>
-  <el-dialog v-model="isWC" title="人机验证" width="40%" :before-close="handleClose">
+  <el-dialog v-model="isWC" :before-close="handleClose" title="人机验证" width="40%">
     <div class="verification-flex">
       <span>扫码下方二维码，关注后回复：<strong><span style="color:blue;">link</span></strong>，获取拿个offer-SaaS短链接系统人机验证码</span>
-      <img class="img" src="@/assets/png/公众号二维码.png" alt="">
-      <el-form class="form" :model="verification" :rules="verificationRule" ref="verificationRef">
-        <el-form-item prop="code" label="验证码">
-          <el-input v-model="verification.code" />
+      <img alt="" class="img" src="@/assets/png/公众号二维码.png">
+      <el-form ref="verificationRef" :model="verification" :rules="verificationRule" class="form">
+        <el-form-item label="验证码" prop="code">
+          <el-input v-model="verification.code"/>
         </el-form-item>
       </el-form>
     </div>
@@ -125,13 +129,14 @@
 </template>
 
 <script setup>
-import { setToken, setUsername, getUsername } from '@/core/auth.js'
-import { ref, reactive, onMounted, onBeforeUnmount, watch, getCurrentInstance } from 'vue'
-import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import {getUsername, setToken, setUsername} from '@/core/auth.js'
+import {getCurrentInstance, onBeforeUnmount, onMounted, reactive, ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {ElMessage} from 'element-plus'
 import * as THREE from 'three'
 import WAVES from 'vanta/src/vanta.waves'
-const { proxy } = getCurrentInstance()
+
+const {proxy} = getCurrentInstance()
 const API = proxy.$API
 const loginFormRef1 = ref()
 const loginFormRef2 = ref()
@@ -150,21 +155,21 @@ const addForm = reactive({
 
 const addFormRule = reactive({
   phone: [
-    { required: true, message: '请输入手机号', trigger: 'blur' },
+    {required: true, message: '请输入手机号', trigger: 'blur'},
     {
       pattern: /^1[3|5|7|8|9]\d{9}$/,
       message: '请输入正确的手机号',
       trigger: 'blur'
     },
-    { min: 11, max: 11, message: '手机号必须是11位', trigger: 'blur' }
+    {min: 11, max: 11, message: '手机号必须是11位', trigger: 'blur'}
   ],
-  username: [{ required: true, message: '请输入您的真实姓名', trigger: 'blur' }],
+  username: [{required: true, message: '请输入您的真实姓名', trigger: 'blur'}],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 8, max: 15, message: '密码长度请在八位以上', trigger: 'blur' }
+    {required: true, message: '请输入密码', trigger: 'blur'},
+    {min: 8, max: 15, message: '密码长度请在八位以上', trigger: 'blur'}
   ],
   mail: [
-    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    {required: true, message: '请输入邮箱', trigger: 'blur'},
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
       message: '请输入正确的邮箱号',
@@ -172,14 +177,14 @@ const addFormRule = reactive({
     }
   ],
   realNamee: [
-    { required: true, message: '请输姓名', trigger: 'blur' },
+    {required: true, message: '请输姓名', trigger: 'blur'},
   ]
 })
 const loginFormRule = reactive({
-  username: [{ required: true, message: '请输入您的真实姓名', trigger: 'blur' }],
+  username: [{required: true, message: '请输入您的真实姓名', trigger: 'blur'}],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 8, max: 15, message: '密码长度请在八位以上', trigger: 'blur' }
+    {required: true, message: '请输入密码', trigger: 'blur'},
+    {min: 8, max: 15, message: '密码长度请在八位以上', trigger: 'blur'}
   ],
 })
 // 注册
@@ -188,7 +193,7 @@ const addUser = (formEl) => {
   formEl.validate(async (valid) => {
     if (valid) {
       // 检测用户名是否已经存在
-      const res1 = await API.user.hasUsername({ username: addForm.username })
+      const res1 = await API.user.hasUsername({username: addForm.username})
       if (res1.data.success !== false) {
         // 注册
         const res2 = await API.user.addUser(addForm)
@@ -196,7 +201,7 @@ const addUser = (formEl) => {
         if (res2.data.success === false) {
           ElMessage.warning(res2.data.message)
         } else {
-          const res3 = await API.user.login({ username: addForm.username, password: addForm.password })
+          const res3 = await API.user.login({username: addForm.username, password: addForm.password})
           const token = res3?.data?.data?.token
           // 将username和token保存到cookies中和localStorage中
           if (token) {
@@ -224,7 +229,7 @@ const verification = reactive({
   code: ''
 })
 const verificationRule = reactive({
-  code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
+  code: [{required: true, message: '请输入验证码', trigger: 'blur'}]
 })
 const verificationLogin = (formEl) => {
   if (!formEl) return
@@ -368,9 +373,8 @@ const changeLogin = () => {
 
   h2 {
     font-size: 30px;
-    font-family:
-      PingFangSC-Semibold,
-      PingFang SC;
+    font-family: PingFangSC-Semibold,
+    PingFang SC;
     font-weight: 600;
     color: #3a3f63;
     width: 100%;
@@ -481,8 +485,8 @@ const changeLogin = () => {
   background: -webkit-linear-gradient(to right, #0984e3, #0984e3);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right,
-      #1a8fd5,
-      #0984e3);
+  #1a8fd5,
+  #0984e3);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -518,6 +522,7 @@ const changeLogin = () => {
     margin-top: 10px;
     align-self: center;
   }
+
   .form {
     transform: translateY(15px);
     width: 90%;

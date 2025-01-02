@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 用户登录接口返回响应
-
  */
 @Data
 @NoArgsConstructor

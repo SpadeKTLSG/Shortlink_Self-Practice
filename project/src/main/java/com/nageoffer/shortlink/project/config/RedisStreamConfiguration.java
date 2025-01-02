@@ -41,7 +41,6 @@ import static com.nageoffer.shortlink.project.common.constant.RedisKeyConstant.S
 
 /**
  * Redis Stream 消息队列配置
- 
  */
 @Configuration
 @RequiredArgsConstructor

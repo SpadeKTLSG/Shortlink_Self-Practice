@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 短链接跳转实体
-
  */
 @Data
 @Builder

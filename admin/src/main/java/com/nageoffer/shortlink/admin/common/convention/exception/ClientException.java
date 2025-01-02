@@ -22,7 +22,6 @@ import com.nageoffer.shortlink.admin.common.convention.errorcode.IErrorCode;
 
 /**
  * 客户端异常
- 
  */
 public class ClientException extends AbstractException {
 

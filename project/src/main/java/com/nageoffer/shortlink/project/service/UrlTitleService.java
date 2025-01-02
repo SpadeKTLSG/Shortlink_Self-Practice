@@ -19,7 +19,6 @@ package com.nageoffer.shortlink.project.service;
 
 /**
  * URL 标题接口层
- 
  */
 public interface UrlTitleService {
 

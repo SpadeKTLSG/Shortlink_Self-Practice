@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * 地区统计访问持久层
- 
  */
 public interface LinkLocaleStatsMapper extends BaseMapper<LinkLocaleStatsDO> {
 

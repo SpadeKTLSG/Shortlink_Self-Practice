@@ -1,28 +1,29 @@
 <template>
-  <el-popover placement="bottom" trigger="click" :width="180">
+  <el-popover :width="180" placement="bottom" trigger="click">
     <div class="main-box">
       <canvas ref="canvas"></canvas>
-      <el-button type="primary" :width="100" @click="download">下载二维码</el-button>
+      <el-button :width="100" type="primary" @click="download">下载二维码</el-button>
     </div>
     <template #reference>
       <div class="qr-code">
-        <img src="@/assets/svg/二维码.svg" width="20" alt="" />
+        <img alt="" src="@/assets/svg/二维码.svg" width="20"/>
       </div>
     </template>
   </el-popover>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
-import { ElMessage } from 'element-plus'
+import {onMounted, ref} from 'vue'
+import {ElMessage} from 'element-plus'
 import QRCode from 'qrcode'
+
 const props = defineProps({
   url: String
 })
 const canvas = ref()
 // 二维码
 const createQrCode = () => {
-  QRCode.toCanvas(canvas.value, props.url, { width: 150, height: 150 })
+  QRCode.toCanvas(canvas.value, props.url, {width: 150, height: 150})
   // QRCode(qrcodeRef.value, {
   //   text: 'http://www.baidu.com',
   //   width: 200,

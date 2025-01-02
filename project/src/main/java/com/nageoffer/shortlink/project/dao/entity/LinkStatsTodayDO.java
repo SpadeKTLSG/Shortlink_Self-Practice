@@ -28,7 +28,6 @@ import java.util.Date;
 
 /**
  * 短链接今日统计实体
-
  */
 @TableName("t_link_stats_today")
 @Data

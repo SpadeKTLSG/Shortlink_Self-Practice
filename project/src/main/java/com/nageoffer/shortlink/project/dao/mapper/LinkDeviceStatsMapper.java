@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * 访问设备监控持久层
-
  */
 public interface LinkDeviceStatsMapper extends BaseMapper<LinkDeviceStatsDO> {
 

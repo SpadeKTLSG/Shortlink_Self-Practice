@@ -28,7 +28,6 @@ import java.util.Date;
 
 /**
  * 访问网络统计访问实体
-
  */
 @Data
 @TableName("t_link_network_stats")

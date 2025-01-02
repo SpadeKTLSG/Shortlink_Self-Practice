@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * URL 标题控制层
- 
  */
 @RestController(value = "urlTitleControllerByAdmin")
 @RequiredArgsConstructor

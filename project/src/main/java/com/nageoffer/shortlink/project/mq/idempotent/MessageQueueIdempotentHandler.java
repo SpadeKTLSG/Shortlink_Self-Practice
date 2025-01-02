@@ -26,15 +26,13 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 消息队列幂等处理器
-
  */
 @Component
 @RequiredArgsConstructor
 public class MessageQueueIdempotentHandler {
 
-    private final StringRedisTemplate stringRedisTemplate;
-
     private static final String IDEMPOTENT_KEY_PREFIX = "short-link:idempotent:";
+    private final StringRedisTemplate stringRedisTemplate;
 
     /**
      * 判断当前消息是否消费过

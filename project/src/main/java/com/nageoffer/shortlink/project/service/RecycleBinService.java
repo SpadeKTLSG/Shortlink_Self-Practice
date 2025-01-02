@@ -28,7 +28,6 @@ import com.nageoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
 
 /**
  * 回收站管理接口层
-
  */
 public interface RecycleBinService extends IService<ShortLinkDO> {
 

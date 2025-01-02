@@ -26,7 +26,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * 用户信息传输拦截器
-
  */
 @Component
 public class UserTransmitInterceptor implements HandlerInterceptor {

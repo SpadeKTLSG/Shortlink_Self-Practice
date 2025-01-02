@@ -3,34 +3,34 @@
     <el-container>
       <el-header height="54px" style="padding: 0">
         <div class="header">
-          <div @click="toMySpace" class="logo">拿个offer-SaaS短链接@马丁</div>
+          <div class="logo" @click="toMySpace">拿个offer-SaaS短链接@马丁</div>
           <div style="display: flex; align-items: center">
             <a
-              class="link-span"
-              style="text-decoration: none"
-              target="_blank"
-              href="https://nageoffer.com/shortlink/"
-              >官方文档</a
-            >
-            <a
-              class="link-span"
-              style="text-decoration: none"
-              target="_blank"
-              href="https://nageoffer.com/planet/group/"
-              >加沟通群</a
+                class="link-span"
+                href="https://nageoffer.com/shortlink/"
+                style="text-decoration: none"
+                target="_blank"
+            >官方文档</a
             >
             <a
                 class="link-span"
+                href="https://nageoffer.com/planet/group/"
                 style="text-decoration: none"
                 target="_blank"
+            >加沟通群</a
+            >
+            <a
+                class="link-span"
                 href="https://nageoffer.com/shortlink/video/"
+                style="text-decoration: none"
+                target="_blank"
             >🔥视频教程</a
             >
             <a
                 class="link-span"
+                href="http://shortlink.nageoffer.com"
                 style="text-decoration: none"
                 target="_blank"
-                href="http://shortlink.nageoffer.com"
             >演示环境</a
             >
             <el-dropdown>
@@ -38,7 +38,7 @@
                 <span
                     class="name-span"
                     style="text-decoration: none"
-                >{{username}}</span
+                >{{ username }}</span
                 >
               </div>
               <template #dropdown>
@@ -53,7 +53,7 @@
       </el-header>
       <el-main style="padding: 0">
         <div class="content-box">
-          <RouterView class="content-space" />
+          <RouterView class="content-space"/>
         </div>
       </el-main>
       <!-- <el-container>
@@ -81,11 +81,12 @@
 </template>
 
 <script setup>
-import { ref, getCurrentInstance, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { removeKey, removeUsername, getToken, getUsername } from '@/core/auth.js'
-import { ElMessage } from 'element-plus'
-const { proxy } = getCurrentInstance()
+import {getCurrentInstance, onMounted, ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {getToken, getUsername, removeKey, removeUsername} from '@/core/auth.js'
+import {ElMessage} from 'element-plus'
+
+const {proxy} = getCurrentInstance()
 const API = proxy.$API
 // 当当前路径和菜单不匹配时，菜单不会被选中
 const router = useRouter()
@@ -98,7 +99,7 @@ const logout = async () => {
   const token = getToken()
   const username = getUsername()
   // 请求登出的接口
-  await API.user.logout({ token, username })
+  await API.user.logout({token, username})
   // 删除cookies中的token和username
   removeUsername()
   removeKey()
@@ -152,7 +153,7 @@ const truncateText = (text, maxLength) => {
 }
 
 .header {
-  color: rgba(0,0,0,.85);
+  color: rgba(0, 0, 0, .85);
   background-color: #252b30;
   padding: 0 0 0 20px;
   height: 100%;
@@ -182,7 +183,7 @@ const truncateText = (text, maxLength) => {
   font-weight: 600;
   color: #e8e8e8;
   font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
-    'Microsoft YaHei', 'WenQuanYi Micro Hei';
+  'Microsoft YaHei', 'WenQuanYi Micro Hei';
   // font-family: 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
   cursor: pointer;
 }

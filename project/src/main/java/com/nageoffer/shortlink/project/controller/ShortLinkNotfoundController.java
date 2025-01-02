@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 短链接不存在跳转控制器
- 
  */
 @Controller
 public class ShortLinkNotfoundController {

@@ -28,7 +28,6 @@ import java.util.Date;
 
 /**
  * 浏览器统计访问实体
-
  */
 @Data
 @TableName("t_link_browser_stats")

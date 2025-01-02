@@ -23,7 +23,6 @@ import lombok.Data;
 
 /**
  * 用户持久层实体
- 
  */
 @Data
 @TableName("t_user")

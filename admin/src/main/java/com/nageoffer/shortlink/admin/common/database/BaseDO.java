@@ -25,7 +25,6 @@ import java.util.Date;
 
 /**
  * 数据库持久层对象基础属性
- 
  */
 @Data
 public class BaseDO {

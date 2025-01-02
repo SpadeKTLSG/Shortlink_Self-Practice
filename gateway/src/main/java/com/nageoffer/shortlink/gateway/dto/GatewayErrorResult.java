@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 网关错误返回信息
-
  */
 @Data
 @Builder

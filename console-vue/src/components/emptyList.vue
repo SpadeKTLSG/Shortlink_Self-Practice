@@ -14,7 +14,7 @@ defineProps({
 
 <template>
   <div class="empty">
-    <img src="@/assets/png/无数据.png" alt="" class="empty_img" />
+    <img alt="" class="empty_img" src="@/assets/png/无数据.png"/>
     <p>{{ text }}</p>
     <slot></slot>
   </div>

@@ -25,7 +25,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * 用户配置自动装配
-
  */
 @Configuration(value = "userConfigurationByProject")
 @RequiredArgsConstructor

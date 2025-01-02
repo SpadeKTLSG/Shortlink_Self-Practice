@@ -27,7 +27,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * 用户配置自动装配
-
  */
 @Configuration
 public class UserConfiguration {

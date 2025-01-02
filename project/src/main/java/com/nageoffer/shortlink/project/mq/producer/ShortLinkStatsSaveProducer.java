@@ -18,7 +18,6 @@
 package com.nageoffer.shortlink.project.mq.producer;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +27,6 @@ import static com.nageoffer.shortlink.project.common.constant.RedisKeyConstant.S
 
 /**
  * 短链接监控状态保存消息队列生产者
- 
  */
 @Component
 @RequiredArgsConstructor

@@ -22,7 +22,6 @@ import com.nageoffer.shortlink.admin.common.convention.errorcode.IErrorCode;
 
 /**
  * 远程服务调用异常
- 
  */
 public class RemoteException extends AbstractException {
 

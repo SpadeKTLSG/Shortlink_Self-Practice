@@ -27,7 +27,6 @@ import com.nageoffer.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
  * 用户接口层
- 
  */
 public interface UserService extends IService<UserDO> {
 

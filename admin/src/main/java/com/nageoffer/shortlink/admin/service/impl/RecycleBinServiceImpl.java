@@ -37,7 +37,6 @@ import java.util.List;
 
 /**
  * URL 回收站接口实现层
- 
  */
 @Service(value = "recycleBinServiceImplByAdmin")
 @RequiredArgsConstructor

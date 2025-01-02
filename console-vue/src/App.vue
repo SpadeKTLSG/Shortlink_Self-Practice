@@ -1,7 +1,8 @@
 <script setup>
 // element汉化
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { removeKey } from '@/core/auth.js'
+import {removeKey} from '@/core/auth.js'
+
 const removeCookies = () => {
   removeKey('Authorization')
 }
@@ -10,13 +11,13 @@ const removeCookies = () => {
 
 <template>
   <el-config-provider :locale="zhCn">
-    <router-view />
+    <router-view/>
   </el-config-provider>
 </template>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 a {
- text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 </style>
