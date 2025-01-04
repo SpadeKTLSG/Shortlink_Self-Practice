@@ -52,11 +52,15 @@ public class UserFlowRiskControlFilter implements Filter {
     @SneakyThrows
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        // 配置lua脚本
         DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
         redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource(USER_FLOW_RISK_CONTROL_LUA_SCRIPT_PATH)));
         redisScript.setResultType(Long.class);
+
         String username = Optional.ofNullable(UserContext.getUsername()).orElse("other");
         Long result;
+
+        // 执行lua脚本
         try {
             result = stringRedisTemplate.execute(redisScript, Lists.newArrayList(username), userFlowRiskControlConfiguration.getTimeWindow());
         } catch (Throwable ex) {
@@ -64,13 +68,19 @@ public class UserFlowRiskControlFilter implements Filter {
             returnJson((HttpServletResponse) response, JSON.toJSONString(Results.failure(new ClientException(FLOW_LIMIT_ERROR))));
             return;
         }
+
+        // 判断是否超过限制
         if (result == null || result > userFlowRiskControlConfiguration.getMaxAccessCount()) {
+
             returnJson((HttpServletResponse) response, JSON.toJSONString(Results.failure(new ClientException(FLOW_LIMIT_ERROR))));
             return;
         }
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * 返回json响应
+     */
     private void returnJson(HttpServletResponse response, String json) throws Exception {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
