@@ -98,7 +98,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ShortLinkCreateRespDTO createShortLink(ShortLinkCreateReqDTO requestParam) {
-        // 短链接接口的并发量有多少？如何测试？详情查看：https://nageoffer.com/shortlink/question
+
         verificationWhitelist(requestParam.getOriginUrl());
         String shortLinkSuffix = generateSuffix(requestParam);
         String fullShortUrl = StrBuilder.create(createShortLinkDefaultDomain)
@@ -127,10 +127,10 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 .gid(requestParam.getGid())
                 .build();
         try {
-            // 短链接项目有多少数据？如何解决海量数据存储？详情查看：https://nageoffer.com/shortlink/question
+
             baseMapper.insert(shortLinkDO);
-            // 短链接数据库分片键是如何考虑的？详情查看：https://nageoffer.com/shortlink/question
             shortLinkGotoMapper.insert(linkGotoDO);
+
         } catch (DuplicateKeyException ex) {
             // 首先判断是否存在布隆过滤器，如果不存在直接新增
             if (!shortUriCreateCachePenetrationBloomFilter.contains(fullShortUrl)) {
@@ -138,13 +138,15 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             }
             throw new ServiceException(String.format("短链接：%s 生成重复", fullShortUrl));
         }
-        // 项目中短链接缓存预热是怎么做的？详情查看：https://nageoffer.com/shortlink/question
+
+
         stringRedisTemplate.opsForValue().set(
                 String.format(GOTO_SHORT_LINK_KEY, fullShortUrl),
                 requestParam.getOriginUrl(),
                 LinkUtil.getLinkCacheValidTime(requestParam.getValidDate()), TimeUnit.MILLISECONDS
         );
-        // 删除短链接后，布隆过滤器如何删除？详情查看：https://nageoffer.com/shortlink/question
+
+        // 删除短链接后，布隆过滤器如何删除?
         shortUriCreateCachePenetrationBloomFilter.add(fullShortUrl);
         return ShortLinkCreateRespDTO.builder()
                 .fullShortUrl("http://" + shortLinkDO.getFullShortUrl())
@@ -156,8 +158,9 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
     @Override
     public ShortLinkCreateRespDTO createShortLinkByLock(ShortLinkCreateReqDTO requestParam) {
         verificationWhitelist(requestParam.getOriginUrl());
+
         String fullShortUrl;
-        // 为什么说布隆过滤器性能远胜于分布式锁？详情查看：https://nageoffer.com/shortlink/question
+
         RLock lock = redissonClient.getLock(SHORT_LINK_CREATE_LOCK_KEY);
         lock.lock();
         try {
@@ -193,11 +196,13 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             } catch (DuplicateKeyException ex) {
                 throw new ServiceException(String.format("短链接：%s 生成重复", fullShortUrl));
             }
+
             stringRedisTemplate.opsForValue().set(
                     String.format(GOTO_SHORT_LINK_KEY, fullShortUrl),
                     requestParam.getOriginUrl(),
                     LinkUtil.getLinkCacheValidTime(requestParam.getValidDate()), TimeUnit.MILLISECONDS
             );
+
         } finally {
             lock.unlock();
         }
@@ -207,6 +212,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 .gid(requestParam.getGid())
                 .build();
     }
+
 
     @Override
     public ShortLinkBatchCreateRespDTO batchCreateShortLink(ShortLinkBatchCreateReqDTO requestParam) {
@@ -239,15 +245,19 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
     @Override
     public void updateShortLink(ShortLinkUpdateReqDTO requestParam) {
         verificationWhitelist(requestParam.getOriginUrl());
+
         LambdaQueryWrapper<ShortLinkDO> queryWrapper = Wrappers.lambdaQuery(ShortLinkDO.class)
                 .eq(ShortLinkDO::getGid, requestParam.getOriginGid())
                 .eq(ShortLinkDO::getFullShortUrl, requestParam.getFullShortUrl())
                 .eq(ShortLinkDO::getDelFlag, 0)
                 .eq(ShortLinkDO::getEnableStatus, 0);
+
         ShortLinkDO hasShortLinkDO = baseMapper.selectOne(queryWrapper);
         if (hasShortLinkDO == null) {
             throw new ClientException("短链接记录不存在");
         }
+
+
         if (Objects.equals(hasShortLinkDO.getGid(), requestParam.getGid())) {
             LambdaUpdateWrapper<ShortLinkDO> updateWrapper = Wrappers.lambdaUpdate(ShortLinkDO.class)
                     .eq(ShortLinkDO::getFullShortUrl, requestParam.getFullShortUrl())
@@ -313,7 +323,9 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 rLock.unlock();
             }
         }
-        // 短链接如何保障缓存和数据库一致性？详情查看：https://nageoffer.com/shortlink/question
+
+
+
         if (!Objects.equals(hasShortLinkDO.getValidDateType(), requestParam.getValidDateType())
                 || !Objects.equals(hasShortLinkDO.getValidDate(), requestParam.getValidDate())
                 || !Objects.equals(hasShortLinkDO.getOriginUrl(), requestParam.getOriginUrl())) {
@@ -326,6 +338,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             }
         }
     }
+
 
     @Override
     public IPage<ShortLinkPageRespDTO> pageShortLink(ShortLinkPageReqDTO requestParam) {
@@ -353,8 +366,8 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
     @SneakyThrows
     @Override
     public void restoreUrl(String shortUri, ServletRequest request, ServletResponse response) {
-        // 短链接接口的并发量有多少？如何测试？详情查看：https://nageoffer.com/shortlink/question
-        // 面试中如何回答短链接是如何跳转长链接？详情查看：https://nageoffer.com/shortlink/question
+
+
         String serverName = request.getServerName();
         String serverPort = Optional.of(request.getServerPort())
                 .filter(each -> !Objects.equals(each, 80))
@@ -378,6 +391,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             ((HttpServletResponse) response).sendRedirect("/page/notfound");
             return;
         }
+
         RLock lock = redissonClient.getLock(String.format(LOCK_GOTO_SHORT_LINK_KEY, fullShortUrl));
         lock.lock();
         try {
@@ -423,10 +437,12 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
         }
     }
 
+
     private ShortLinkStatsRecordDTO buildLinkStatsRecordAndSetUser(String fullShortUrl, ServletRequest request, ServletResponse response) {
         AtomicBoolean uvFirstFlag = new AtomicBoolean();
         Cookie[] cookies = ((HttpServletRequest) request).getCookies();
         AtomicReference<String> uv = new AtomicReference<>();
+
         Runnable addResponseCookieTask = () -> {
             uv.set(UUID.fastUUID().toString());
             Cookie uvCookie = new Cookie("uv", uv.get());
@@ -436,6 +452,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             uvFirstFlag.set(Boolean.TRUE);
             stringRedisTemplate.opsForSet().add(SHORT_LINK_STATS_UV_KEY + fullShortUrl, uv.get());
         };
+
         if (ArrayUtil.isNotEmpty(cookies)) {
             Arrays.stream(cookies)
                     .filter(each -> Objects.equals(each.getName(), "uv"))
@@ -449,6 +466,8 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
         } else {
             addResponseCookieTask.run();
         }
+
+
         String remoteAddr = LinkUtil.getActualIp(((HttpServletRequest) request));
         String os = LinkUtil.getOs(((HttpServletRequest) request));
         String browser = LinkUtil.getBrowser(((HttpServletRequest) request));
@@ -470,11 +489,11 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 .build();
     }
 
+
     @Override
     public void shortLinkStats(ShortLinkStatsRecordDTO statsRecord) {
         Map<String, String> producerMap = new HashMap<>();
         producerMap.put("statsRecord", JSON.toJSONString(statsRecord));
-        // 消息队列为什么选用RocketMQ？详情查看：https://nageoffer.com/shortlink/question
         shortLinkStatsSaveProducer.send(producerMap);
     }
 
