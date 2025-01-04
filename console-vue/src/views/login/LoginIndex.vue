@@ -2,6 +2,7 @@
   <div class="login-page">
     <h1 class="title">SaaS 短 链 接 平 台(马丁)</h1>
     <div class="login-box">
+
       <!-- 登录 -->
       <div :class="{ hidden: !isLogin }" class="logon">
         <h2>用户登录</h2>
@@ -34,6 +35,7 @@
           </div>
         </el-form>
       </div>
+
       <!-- 注册 -->
       <div :class="{ hidden: isLogin }" class="register">
         <h2>用户注册</h2>
@@ -90,6 +92,7 @@
           </div>
         </el-form>
       </div>
+
       <!-- 左右移动的切换按钮 -->
       <div ref="moveRef" class="move">
         <span style="font-size: 18px; margin-bottom: 25px; color: rgb(225, 238, 250)">{{
@@ -145,6 +148,7 @@ const loginForm = reactive({
   username: 'admin',
   password: 'admin123456',
 })
+
 const addForm = reactive({
   username: '',
   password: '',
@@ -180,6 +184,8 @@ const addFormRule = reactive({
     {required: true, message: '请输姓名', trigger: 'blur'},
   ]
 })
+
+
 const loginFormRule = reactive({
   username: [{required: true, message: '请输入您的真实姓名', trigger: 'blur'}],
   password: [
@@ -187,6 +193,8 @@ const loginFormRule = reactive({
     {min: 8, max: 15, message: '密码长度请在八位以上', trigger: 'blur'}
   ],
 })
+
+
 // 注册
 const addUser = (formEl) => {
   if (!formEl) return
@@ -220,17 +228,21 @@ const addUser = (formEl) => {
       return false
     }
   })
-
 }
+
+
 // 公众号验证码
 const isWC = ref(false)
 const verificationRef = ref()
 const verification = reactive({
   code: ''
 })
+
 const verificationRule = reactive({
   code: [{required: true, message: '请输入验证码', trigger: 'blur'}]
 })
+
+
 const verificationLogin = (formEl) => {
   if (!formEl) return
   formEl.validate(async (valid) => {
@@ -265,6 +277,8 @@ const verificationLogin = (formEl) => {
     }
   })
 }
+
+
 // 登录
 const login = (formEl) => {
   if (!formEl) return
@@ -304,9 +318,9 @@ const login = (formEl) => {
       return false
     }
   })
-
-
 }
+
+
 
 const loading = ref(false)
 // 是否记住密码
@@ -314,6 +328,7 @@ const checked = ref(true)
 const vantaRef = ref()
 // 动态背景
 let vantaEffect = null
+
 onMounted(() => {
   vantaEffect = WAVES({
     el: vantaRef.value,
@@ -327,14 +342,19 @@ onMounted(() => {
     scaleMobile: 1.0
   })
 })
+
 onBeforeUnmount(() => {
   if (vantaEffect) {
     vantaEffect.destroy()
   }
 })
+
+
 // 展示登录还是展示注册
 const isLogin = ref(true)
 const moveRef = ref() // 左右移动的切换按钮模块
+
+
 const changeLogin = () => {
   let domain = window.location.host
   if (domain === 'shortlink.magestack.cn' || domain === 'shortlink.nageoffer.com') {
@@ -348,7 +368,10 @@ const changeLogin = () => {
     moveRef.value.style.transform = 'translate(-420px, 0)'
   }
 }
+
 </script>
+
+
 
 <style lang="less" scoped>
 .login-box {

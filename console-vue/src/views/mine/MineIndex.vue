@@ -5,6 +5,7 @@
         <span>账号设置</span>
       </div>
     </div>
+
     <div class="main-box">
       <el-descriptions
           :column="1"
@@ -61,6 +62,7 @@
       <el-button style="position: absolute;left: 35px; top: 250px; " type="primary" @click="dialogVisible = !dialogVisible">修改个人信息</el-button>
     </div>
   </div>
+
   <!-- 修改信息 -->
   <el-dialog v-model="dialogVisible" :before-close="handleClose" title="修改个人信息" width="60%">
     <div :class="{ hidden: isLogin }" class="register">
@@ -129,6 +131,7 @@
   </el-dialog>
 </template>
 
+
 <script setup>
 import {getCurrentInstance, reactive, ref} from 'vue'
 import {getUsername} from '@/core/auth'
@@ -141,15 +144,22 @@ const {proxy} = getCurrentInstance()
 const API = proxy.$API
 const userInfo = ref()
 const userInfoForm = ref() // 修改信息
+
 const getUserInfo = async () => {
   const username = getUsername()
   userInfo.value = await API.user.queryUserInfo(username)
   userInfoForm.value = cloneDeep(userInfo.value.data?.data)
   // console.log(userInfoForm.value)
 }
+
+
+
 getUserInfo()
+
+
 // 修改信息
 const dialogVisible = ref(false)
+
 const formRule = reactive({
   phone: [
     {required: true, message: '请输入手机号', trigger: 'blur'},
@@ -175,6 +185,8 @@ const formRule = reactive({
   ],
   realNamee: [{required: true, message: '请输姓名', trigger: 'blur'}]
 })
+
+
 const changeUserInfo = (formEl) => {
   if (!formEl) return
   formEl.validate(async (valid) => {
@@ -193,6 +205,7 @@ const changeUserInfo = (formEl) => {
     }
   })
 }
+
 </script>
 
 <style lang="scss" scoped>

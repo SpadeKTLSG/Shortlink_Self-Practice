@@ -90,10 +90,12 @@ const {proxy} = getCurrentInstance()
 const API = proxy.$API
 // 当当前路径和菜单不匹配时，菜单不会被选中
 const router = useRouter()
-const squareUrl = ref('https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png')
+const username = ref('')
+
 const toMine = () => {
   router.push('/home' + '/account')
 }
+
 // 登出
 const logout = async () => {
   const token = getToken()
@@ -108,17 +110,22 @@ const logout = async () => {
   router.push('/login')
   ElMessage.success('成功退出！')
 }
+
 // 点击左上方的图片跳转到我的空间
 const toMySpace = () => {
   router.push('/home' + '/space')
 }
-const username = ref('')
+
+
+
 onMounted(async () => {
   const actualUsername = getUsername()
   const res = await API.user.queryUserInfo(actualUsername)
   // firstName.value = res?.data?.data?.realName?.split('')[0]
   username.value = truncateText(actualUsername, 8)
 })
+
+
 const extractColorByName = (name) => {
   var temp = []
   temp.push('#')
@@ -128,10 +135,12 @@ const extractColorByName = (name) => {
   return temp.slice(0, 5).join('').slice(0, 4)
 }
 
+
 // 辅助函数，用于截断文本
 const truncateText = (text, maxLength) => {
   return text.length > maxLength ? text.slice(0, maxLength) + '...' : text
 }
+
 </script>
 
 <style lang="scss" scoped>
